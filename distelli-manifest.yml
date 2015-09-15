@@ -1,0 +1,27 @@
+vishalmanohar/spring-petclinic:
+
+  #The PkgInclude is to identify files that must be included in the application deployment: http://distel.li/pkgincludesection
+  PkgInclude:
+    - 'target/petclinic.war'
+
+  #The PreRelease section is for specifying build and pre-packaging steps: http://distel.li/prereleasesection
+  PreRelease:
+    - echo "Begin PreRelease"
+    - mvn test package
+
+  #The PreInstall section occurs before install: distel.li/preinstallsection
+  PreInstall:
+    - echo "Begin PreInstall"
+    - sudo apt-get install openjdk-7-jre
+    - sudo apt-get install tomcat7
+    - sudo service tomcat7 restart
+
+  #The PostInstall section occurs after install: http://distel.li/postinstallsection
+  PostInstall:
+    - echo "Begin PostInstall"
+    - cp petclinic.war /var/lib/tomcat7/webapps/
+
+  #The Exec section executes and monitors the application: distel.li/execsection
+  Exec:
+    #- java Program
+

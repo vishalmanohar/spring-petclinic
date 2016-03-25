@@ -1,0 +1,8 @@
+---
+platform: linux
+
+image: docker:///maven
+
+run:
+  path: mvn 
+  args: [test package]

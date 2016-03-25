@@ -4,5 +4,5 @@ platform: linux
 image: docker:///maven
 
 run:
-  path: mvn 
+  path: sudo mvn 
   args: [test package]

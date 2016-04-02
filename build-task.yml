@@ -1,8 +1,12 @@
 ---
 platform: linux
 
-image: docker:///maven
+image_resource:
+  type: docker-image
+  repository: nitram509/alpine-oraclejdk8-maven-cmake-gcc
 
+inputs:
+  - name: spring-pet-clinic-repo
 run:
-  path: mvn 
-  args: [test package]
+  path: mvn
+  args: ["-f", "spring-pet-clinic-repo/pom.xml", "-DskipTests=true", "package"]
